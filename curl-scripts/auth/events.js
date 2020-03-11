@@ -11,6 +11,7 @@ const signUp = function (data) {
     data: data
   })
 }
+
 const signIn = function (data) {
   console.log("In api.js")
   return $.ajax({
