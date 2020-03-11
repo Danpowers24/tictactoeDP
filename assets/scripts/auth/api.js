@@ -1,7 +1,7 @@
 'use strict'
 
-const config = require('../assets/scripts/templates/config.js')
-const store = require('../assets/scripts/templates/store.js')
+const config = require('../config.js')
+const store = require('../store.js')
 
 const signUp = function (data) {
   console.log('In api.js')
