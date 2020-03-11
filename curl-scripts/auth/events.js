@@ -1,55 +1,50 @@
 'use strict'
-// /Users/danielpowers/sei/projects/tictactoeDP-client/lib/get-form-fields.js
-const getFormFields = require('../lib/get-form-fields.js')
-const config = require('../assets/scripts/templates/config.js')
-const store = require('../assets/scripts/templates/store.js')
 
-const signUp = function (data) {
-  console.log('In api.js')
-  return $.ajax({
-    url: config.apiUrl + '/sign-up',
-    method: 'POST',
-    data: data
-  })
+const getFormFields = require('../lib/get-form-fields')
+
+const api = require('./api')
+
+const ui = require('./ui.js')
+
+const onSignUp = function (event) {
+  event.preventDefault()
+  console.log('Signing up')
+  const data = getFormFields(event.target)
+  api.signUp(data)
+    .then(ui.signUpSuccess)
+    .catch(ui.signUpFailure)
 }
 
-const signIn = function (data) {
-  console.log('In api.js')
-  return $.ajax({
-    url: config.apiUrl + '/sign-in',
-    method: 'POST',
-    data
-  })
+const onSignIn = function (event) {
+  event.preventDefault()
+  console.log('Signing in')
+  const data = getFormFields(event.target)
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
 }
 
-const signOut = function () {
-  console.log('In api.js')
-  return $.ajax({
-    url: config.apiUrl + '/sign-out',
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
+const onChangePassword = function (event) {
+  event.preventDefault()
+  console.log('Changing Password')
+  const data = getFormFields(event.target)
+  api.changePassword(data)
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
 }
 
-const changePassword = function (data) {
-  console.log('In api.js')
-  return $.ajax({
-    url: config.apiUrl + '/change-password',
-    method: 'POST',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    },
-    data
-  })
+const onSignOut = function (event) {
+  event.preventDefault()
+  console.log('Signing out')
+  api.signOut()
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
 }
-
-
 
 module.exports = {
-  signUp,
-  signIn,
-  changePassword,
-  signOut
+  onSignUp,
+  onSignIn,
+  onChangePassword,
+  onSignOut
+  // onSignUp: onSignUp
 }
