@@ -42,21 +42,21 @@ const changePasswordFailure = function (error) {
   $('#message').text('Failed to change password, try again')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('changePasswordFailure error is: ' , error)
+  console.log('changePasswordFailure error is: ', error)
 }
 
 const signOutSuccess = function (data) {
   $('#message').text('You have successfully signed out')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signOutSuccess data is: ' , data)
+  console.log('signOutSuccess data is: ', data)
 }
 
-const singOutFailure = function (data) {
+const signOutFailure = function (data) {
   $('#message').text('You are not signed out yet! Something went wrong.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signOutFailure data is: ' , data)
+  console.log('signOutFailure data is: ', data)
 }
 
 
@@ -66,5 +66,7 @@ module.exports = {
   signInSuccess,
   signInFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  signOutSuccess,
+  signOutFailure
 }
