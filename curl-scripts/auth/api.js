@@ -4,7 +4,7 @@ const config = require('../assets/scripts/templates/config.js')
 const store = require('../assets/scripts/templates/store.js')
 
 const signUp = function (data) {
-  console.log("In api.js")
+  console.log('In api.js')
   return $.ajax({
     url: config.apiUrl + '/sign-up',
     method: 'POST',
@@ -15,7 +15,7 @@ const signUp = function (data) {
 }
 
 const signIn = function (data) {
-  console.log("In api.js")
+  console.log('In api.js')
   return $.ajax({
     url: config.apiUrl + '/sign-in',
     method: 'POST',
@@ -24,7 +24,7 @@ const signIn = function (data) {
 }
 
 const signOut = function () {
-  console.log("In api.js")
+  console.log('In api.js')
   return $.ajax({
     url: config.apiUrl + '/sign-out',
     method: 'DELETE',
