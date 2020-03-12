@@ -47,15 +47,14 @@ let turn = 'x'
 const makeMove = function (event) {
   console.log('makeMove happened ...')
   const playerTileChoice = event.target.id
-// once this is done testing, take out line 51
+  // once this is done testing, take out line 51
   console.log(playerTileChoice)
   const boxContent = $(event.target).text()
   console.log(boxContent)
   if (boxContent === 'x' || boxContent === 'o') {
-    console.log('error, space already taken, choose again')
-  }
+    $('#message').text('Error, space already taken, try again')
   // if playChoice is nothing
-  else if (boxContent !== 'x' || boxContent !== 'o') {
+  } else if (boxContent !== 'x' || boxContent !== 'o') {
     // make the box the value of the turn
     const boxContent = $(event.target).text(turn)
     if (turn === 'x') {
@@ -63,22 +62,10 @@ const makeMove = function (event) {
     } else if (turn === 'o') {
       turn = 'x'
     }
+    $('#message').text('')
   }
 }
-// else
-// give error back
 
-// if turn = 'x'
-  //  let turn = 'o'
-// if turn = 'o'
-  // let turn = 'x'
-
-
-// } else {
-// console.log('error, space already taken')
-
-// }
-// }
 
 
 
