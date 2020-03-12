@@ -41,9 +41,30 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+// function to make clicks log to the console
+const makeMove = function (event) {
+  console.log('makeMove happened ...')
+  // const playerChoice = event.target.id
+  // console.log(playerChoice)
+  // if ()
+}
+
+// const moveMade = $(event.target).text()
+
+
+// modify the DOM by adding an empty string to each game board space
+// make a function to add test text to it
+// if contents of the game board space are empty, then populate it with the test stuff
+// else display a message "sorry! that space is already taken"
+
+
+
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  makeMove,
+  // moveMade
 }
