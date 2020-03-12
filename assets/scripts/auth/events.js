@@ -42,14 +42,45 @@ const onSignOut = function (event) {
 }
 
 // function to make clicks log to the console
+let turn = 'x'
+
 const makeMove = function (event) {
   console.log('makeMove happened ...')
-  // const playerChoice = event.target.id
-  // console.log(playerChoice)
-  // if ()
+  const playerTileChoice = event.target.id
+// once this is done testing, take out line 51
+  console.log(playerTileChoice)
+  const boxContent = $(event.target).text()
+  console.log(boxContent)
+  if (boxContent === 'x' || boxContent === 'o') {
+    console.log('error, space already taken, choose again')
+  }
+  // if playChoice is nothing
+  else if (boxContent !== 'x' || boxContent !== 'o') {
+    // make the box the value of the turn
+    const boxContent = $(event.target).text(turn)
+    if (turn === 'x') {
+      turn = 'o'
+    } else if (turn === 'o') {
+      turn = 'x'
+    }
+  }
 }
+// else
+// give error back
 
-// const moveMade = $(event.target).text()
+// if turn = 'x'
+  //  let turn = 'o'
+// if turn = 'o'
+  // let turn = 'x'
+
+
+// } else {
+// console.log('error, space already taken')
+
+// }
+// }
+
+
 
 
 // modify the DOM by adding an empty string to each game board space
@@ -65,6 +96,5 @@ module.exports = {
   onSignIn,
   onChangePassword,
   onSignOut,
-  makeMove,
-  // moveMade
+  makeMove
 }
