@@ -47,7 +47,6 @@ let turn = 'x'
 const onMove = function (event) {
   console.log('onMove happened ...')
   const playerTileChoice = event.target.id
-  // once this is done testing, take out line 51
   console.log(playerTileChoice)
   const boxContent = $(event.target).text()
   console.log(boxContent)
@@ -62,20 +61,55 @@ const onMove = function (event) {
     const boxContent = $(event.target).text(turn)
     // flip the value of turn after each turn
     if (turn === 'x') {
+      // update the API with 'x'
+      // pass in playerTileChoice (index) to update API
+      // isOver = true or false depending on if there is a winner or draw
       turn = 'o'
     } else if (turn === 'o') {
+
+
+      // pass in playerTileChoice (index) to update API
+      // update the API with 'o'
+      // isOver = true or false depending on if there is a winner or draw
+
       turn = 'x'
     }
-    // do I have to return boxContent to get that data and fill in the empty array with that?
+    // make a variable that holds my 'sendGameData' then I can send that to the api
+        // must be in the format dictated by the API's rules (in documentation and below)
+//         {
+//   "game": {
+//     "cell": {
+//       "index": 0,
+//       "value": "x"
+//     },
+//     "over": false
+//   }
+// }
+    // isOver = true or false depending on if there is a winner or draw
+
+    // do the above after I code the wins states
+
     // upon a valid move, clear the error message
     $('#message').text('')
   }
 }
 
-const onNewGame = //stuff
+const onNewGame = function (event) {
+  event.preventDefault()
+  console.log('New game button clicked')
+  // wipe the game board
+}
+
+//stuff
+// it's going to be a button so I have to preventDefault
 // make send the api request to start the game
+// turn
 
-
+const onStartGame =
+//  preventDefault
+// this will launch on sing in success
+  // if (signInSuccess = true)
+  //
 
 // modify the DOM by adding an empty string to each game board space
 // make a function to add test text to it
