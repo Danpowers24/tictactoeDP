@@ -48,6 +48,7 @@ let turn = 'x'
 const gameState = ['', '', '', '', '', '','', '', '']
 
 const onMove = function (event) {
+  $('#message').text('')
   console.log('a move was made...')
   const playerTileChoice = event.target.id
   console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
@@ -107,10 +108,6 @@ const onMove = function (event) {
     // isOver = true or false depending on if there is a winner or draw
 
     // do the above after I code the wins states
-
-    // upon a valid move, clear the error message
-    $('#message').text('')
-
   }
 }
 

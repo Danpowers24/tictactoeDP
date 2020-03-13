@@ -1,11 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-
-div {
-  display: inline;
+.game-board-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  width: 200px;
 }
 
-row {
-  display: block;
+
+.box:hover {
+  background-color: #C1E0FD;
+
 }
