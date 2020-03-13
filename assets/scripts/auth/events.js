@@ -44,29 +44,36 @@ const onSignOut = function (event) {
 // function to make clicks log to the console
 let turn = 'x'
 
-const makeMove = function (event) {
-  console.log('makeMove happened ...')
+const onMove = function (event) {
+  console.log('onMove happened ...')
   const playerTileChoice = event.target.id
   // once this is done testing, take out line 51
   console.log(playerTileChoice)
   const boxContent = $(event.target).text()
   console.log(boxContent)
+  // If the space is already taken
   if (boxContent === 'x' || boxContent === 'o') {
+    // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
-  // if playChoice is nothing
-  } else if (boxContent !== 'x' || boxContent !== 'o') {
+    console.log('Error, space already taken, try again')
+  // if there is a free space
+} else {
     // make the box the value of the turn
     const boxContent = $(event.target).text(turn)
+    // flip the value of turn after each turn
     if (turn === 'x') {
       turn = 'o'
     } else if (turn === 'o') {
       turn = 'x'
     }
+    // do I have to return boxContent to get that data and fill in the empty array with that?
+    // upon a valid move, clear the error message
     $('#message').text('')
   }
 }
 
-
+const onNewGame = //stuff
+// make send the api request to start the game
 
 
 
@@ -83,5 +90,6 @@ module.exports = {
   onSignIn,
   onChangePassword,
   onSignOut,
-  makeMove
+  onMove,
+  onNewGame
 }
