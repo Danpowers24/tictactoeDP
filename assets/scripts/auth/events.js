@@ -44,12 +44,15 @@ const onSignOut = function (event) {
 // function to make clicks log to the console
 let turn = 'x'
 
+// test filling out the array with this empty array
+const gameState = ['', '', '', '', '', '','', '', '']
+
 const onMove = function (event) {
-  console.log('onMove happened ...')
+  console.log('a move was made...')
   const playerTileChoice = event.target.id
-  console.log(playerTileChoice)
+  console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
   const boxContent = $(event.target).text()
-  console.log(boxContent)
+  console.log('boxContent = ' + boxContent)
   // If the space is already taken
   if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
@@ -61,18 +64,34 @@ const onMove = function (event) {
     const boxContent = $(event.target).text(turn)
     // flip the value of turn after each turn
     if (turn === 'x') {
+      // take this value export this as a variable (currentTurn) and then return it
+      const currentTurn = turn
+      // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
+      gameState[playerTileChoice] = turn
+      // console.log the array to check what it is doing
+      console.log('This is the gameState array: ' + gameState)
+
       // update the API with 'x'
       // pass in playerTileChoice (index) to update API
       // isOver = true or false depending on if there is a winner or draw
       turn = 'o'
+      console.log('currentTurn = ' + currentTurn)
+      return currentTurn
     } else if (turn === 'o') {
+      const currentTurn = turn
+
+      // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
+      gameState[playerTileChoice] = turn
+      // console.log the array to check what it is doing
+      console.log('This is the gameState array: ' + gameState)
 
 
       // pass in playerTileChoice (index) to update API
       // update the API with 'o'
       // isOver = true or false depending on if there is a winner or draw
-
       turn = 'x'
+      console.log('currentTurn = ' + currentTurn)
+      return currentTurn
     }
     // make a variable that holds my 'sendGameData' then I can send that to the api
         // must be in the format dictated by the API's rules (in documentation and below)
@@ -91,6 +110,7 @@ const onMove = function (event) {
 
     // upon a valid move, clear the error message
     $('#message').text('')
+
   }
 }
 
