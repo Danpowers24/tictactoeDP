@@ -1,6 +1,7 @@
 
 // require gameState
 
+// initial export of hard code
 if (gameState[0] === 'x' && gameState[1] === 'x' && gameState[2] === 'x') {
   console.log('PLAYER X WINS YAYYYYYYYY')
   $('#message').text('Player X wins!')
