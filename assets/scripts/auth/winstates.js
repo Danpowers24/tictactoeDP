@@ -1,5 +1,7 @@
 
-// require gameState
+const gameState = require('./events.js')
+
+// to avoid circular dependancies, I should work on refactoring some of this code and then copy and paste it back into events.js
 
 // initial export of hard code
 if (gameState[0] === 'x' && gameState[1] === 'x' && gameState[2] === 'x') {

@@ -41,9 +41,11 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const gameState = []
+
 let turn = 'x'
 // storing current gameState array
-const gameState = []
+
 const onMove = function (event) {
   $('#message').text('')
   console.log('...a move was made...')
@@ -148,5 +150,6 @@ module.exports = {
   onChangePassword,
   onSignOut,
   onMove,
-  onNewGame
+  onNewGame,
+  gameState
 }
