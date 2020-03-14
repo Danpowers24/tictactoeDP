@@ -41,19 +41,16 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-// function to make clicks log to the console
 let turn = 'x'
-
-// test filling out the array with this empty array
-const gameState = ['', '', '', '', '', '','', '', '']
-
+// storing current gameState array
+const gameState = []
 const onMove = function (event) {
   $('#message').text('')
-  console.log('a move was made...')
+  console.log('...a move was made...')
   const playerTileChoice = event.target.id
   console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
   const boxContent = $(event.target).text()
-  console.log('boxContent = ' + boxContent)
+  // console.log('boxContent = ' + boxContent)
   // If the space is already taken
   if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
@@ -71,63 +68,37 @@ const onMove = function (event) {
       gameState[playerTileChoice] = turn
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
-// write the check game states Here
-      if (gameState[0] === 'x' && gameState[1] === 'x' && gameState[2] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[3] === 'x' && gameState[4] === 'x' && gameState[5] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[6] === 'x' && gameState[7] === 'x' && gameState[8] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[0] === 'x' && gameState[3] === 'x' && gameState[6] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[1] === 'x' && gameState[4] === 'x' && gameState[7] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[2] === 'x' && gameState[5] === 'x' && gameState[8] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[0] === 'x' && gameState[4] === 'x' && gameState[8] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
-      if (gameState[2] === 'x' && gameState[4] === 'x' && gameState[6] === 'x')
-        console.log('PLAYER X WINS YAYYYYYYYY')
+      // check game states Here
+      else {
+      // if the value at every index of the array is either x or o,
       // update the API with 'x'
       // pass in playerTileChoice (index) to update API
       // isOver = true or false depending on if there is a winner or draw
-      turn = 'o'
-      console.log('currentTurn = ' + currentTurn)
-
+        turn = 'o'
+        console.log('currentTurn = ' + currentTurn)
+      }
       return currentTurn
-    } else if (turn === 'o') {
+    } if (turn === 'o') {
       const currentTurn = turn
       // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
       gameState[playerTileChoice] = turn
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
-
-      if (gameState[0] === 'o' && gameState[1] === 'o' && gameState[2] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[3] === 'o' && gameState[4] === 'o' && gameState[5] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[6] === 'o' && gameState[7] === 'o' && gameState[8] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[0] === 'o' && gameState[3] === 'o' && gameState[6] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[1] === 'o' && gameState[4] === 'o' && gameState[7] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[2] === 'o' && gameState[5] === 'o' && gameState[8] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[0] === 'o' && gameState[4] === 'o' && gameState[8] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-      if (gameState[2] === 'o' && gameState[4] === 'o' && gameState[6] === 'o')
-        console.log('PLAYER o WINS YAYYYYYYYY')
-
-      // pass in playerTileChoice (index) to update API
-      // update the API with 'o'
-      // isOver = true or false depending on if there is a winner or draw
-      turn = 'x'
-      console.log('currentTurn = ' + currentTurn)
-      return currentTurn
+      else {
+        turn = 'x'
+        console.log('currentTurn = ' + currentTurn)
+        return currentTurn
+      }
     }
-    // make a variable that holds my 'sendGameData' then I can send that to the api
-    // must be in the format dictated by the API's rules (in documentation and below)
+}
+}
+
+// pass in playerTileChoice (index) to update API at end of second tie code
+// update the API with 'o'
+// isOver = true or false depending on if there is a winner or draw
+
+// make a variable that holds my 'sendGameData' then I can send that to the api
+// must be in the format dictated by the API's rules (in documentation and below)
 //         {
 //   "game": {
 //     "cell": {
@@ -137,11 +108,9 @@ const onMove = function (event) {
 //     "over": false
 //   }
 // }
-    // isOver = true or false depending on if there is a winner or draw
+// isOver = true or false depending on if there is a winner or draw
 
-    // do the above after I code the wins states
-  }
-}
+// do the above after I code the wins states
 
 const onNewGame = function (event) {
   event.preventDefault()
