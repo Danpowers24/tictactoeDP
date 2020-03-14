@@ -66,8 +66,8 @@ const checkWin = function () {
     $('#message').text(`Player ${gameState[0]} WINS`)
     console.log(`Player ${gameState[0]} WINS`)
   } else if (gameState[2] !== '' && gameState[2] === gameState[4] && gameState[4] === gameState[6]) {
-    $('#message').text(`Player ${gameState[0]} WINS`)
-    console.log(`Player ${gameState[0]} WINS`)
+    $('#message').text(`Player ${gameState[2]} WINS`)
+    console.log(`Player ${gameState[2]} WINS`)
   } else {
     console.log('no winner yet, keep playing')
   }
