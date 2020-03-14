@@ -42,6 +42,37 @@ const onSignOut = function (event) {
 }
 
 const gameState = []
+// check for wins, don't worry about ties yet
+const checkWin = function () {
+  if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
+    $('#message').text('Player ' + gameState[0] + ' WINS')
+    console.log(`Player ${gameState[0]} WINS`)
+  } else if (gameState[3] !== '' && gameState[3] === gameState[4] && gameState[4] === gameState[5]) {
+    $('#message').text(`Player ${gameState[3]} WINS`)
+    console.log(`Player ${gameState[3]} WINS`)
+  } else if (gameState[6] !== '' && gameState[6] === gameState[7] && gameState[7] === gameState[8]) {
+    $('#message').text(`Player ${gameState[6]} WINS`)
+    console.log(`Player ${gameState[6]} WINS`)
+  } else if (gameState[0] !== '' && gameState[0] === gameState[3] && gameState[3] === gameState[6]) {
+    $('#message').text(`Player ${gameState[0]} WINS`)
+    console.log(`Player ${gameState[0]} WINS`)
+  } else if (gameState[1] !== '' && gameState[1] === gameState[4] && gameState[4] === gameState[7]) {
+    $('#message').text(`Player ${gameState[1]} WINS`)
+    console.log(`Player ${gameState[1]} WINS`)
+  } else if (gameState[2] !== '' && gameState[2] === gameState[5] && gameState[5] === gameState[8]) {
+    $('#message').text(`Player ${gameState[2]} WINS`)
+    console.log(`Player ${gameState[2]} WINS`)
+  } else if (gameState[0] !== '' && gameState[0] === gameState[4] && gameState[4] === gameState[8]) {
+    $('#message').text(`Player ${gameState[0]} WINS`)
+    console.log(`Player ${gameState[0]} WINS`)
+  } else if (gameState[2] !== '' && gameState[2] === gameState[4] && gameState[4] === gameState[6]) {
+    $('#message').text(`Player ${gameState[0]} WINS`)
+    console.log(`Player ${gameState[0]} WINS`)
+  } else {
+    console.log('no winner yet, keep playing')
+  }
+}
+
 
 let turn = 'x'
 // storing current gameState array
@@ -71,7 +102,7 @@ const onMove = function (event) {
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
 
-      // check game states Here
+      checkWin()
 
       // if the value at every index of the array is either x or o,
       // update the API with 'x'
@@ -88,6 +119,7 @@ const onMove = function (event) {
     gameState[playerTileChoice] = turn
     // console.log the array to check what it is doing
     console.log('This is the gameState array: ' + gameState)
+    checkWin()
     turn = 'x'
     console.log('currentTurn = ' + currentTurn)
     return currentTurn
