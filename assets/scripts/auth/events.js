@@ -68,30 +68,31 @@ const onMove = function (event) {
       gameState[playerTileChoice] = turn
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
+
       // check game states Here
-      else {
+
       // if the value at every index of the array is either x or o,
       // update the API with 'x'
       // pass in playerTileChoice (index) to update API
       // isOver = true or false depending on if there is a winner or draw
-        turn = 'o'
-        console.log('currentTurn = ' + currentTurn)
-      }
+      turn = 'o'
+      console.log('currentTurn = ' + currentTurn)
+
       return currentTurn
-    } if (turn === 'o') {
-      const currentTurn = turn
-      // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
-      gameState[playerTileChoice] = turn
-      // console.log the array to check what it is doing
-      console.log('This is the gameState array: ' + gameState)
-      else {
-        turn = 'x'
-        console.log('currentTurn = ' + currentTurn)
-        return currentTurn
-      }
     }
+  } if (turn === 'o') {
+    const currentTurn = turn
+    // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
+    gameState[playerTileChoice] = turn
+    // console.log the array to check what it is doing
+    console.log('This is the gameState array: ' + gameState)
+    turn = 'x'
+    console.log('currentTurn = ' + currentTurn)
+    return currentTurn
+  }
 }
-}
+
+
 
 
 // pass in playerTileChoice (index) to update API at end of second tie code
