@@ -41,7 +41,7 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-const gameState = []
+const gameState = ['', '', '', '', '', '', '', '', '']
 // check for wins, don't worry about ties yet
 const checkWin = function () {
   if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
