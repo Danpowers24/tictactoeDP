@@ -41,38 +41,55 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+let gameOver = false
+
 const gameState = ['', '', '', '', '', '', '', '', '']
 // check for wins, don't worry about ties yet
 const checkWin = function () {
   if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
     $('#message').text('Player ' + gameState[0] + ' WINS')
     console.log(`Player ${gameState[0]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[3] !== '' && gameState[3] === gameState[4] && gameState[4] === gameState[5]) {
     $('#message').text(`Player ${gameState[3]} WINS`)
     console.log(`Player ${gameState[3]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[6] !== '' && gameState[6] === gameState[7] && gameState[7] === gameState[8]) {
     $('#message').text(`Player ${gameState[6]} WINS`)
     console.log(`Player ${gameState[6]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[0] !== '' && gameState[0] === gameState[3] && gameState[3] === gameState[6]) {
     $('#message').text(`Player ${gameState[0]} WINS`)
     console.log(`Player ${gameState[0]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[1] !== '' && gameState[1] === gameState[4] && gameState[4] === gameState[7]) {
     $('#message').text(`Player ${gameState[1]} WINS`)
     console.log(`Player ${gameState[1]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[2] !== '' && gameState[2] === gameState[5] && gameState[5] === gameState[8]) {
     $('#message').text(`Player ${gameState[2]} WINS`)
     console.log(`Player ${gameState[2]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[0] !== '' && gameState[0] === gameState[4] && gameState[4] === gameState[8]) {
     $('#message').text(`Player ${gameState[0]} WINS`)
     console.log(`Player ${gameState[0]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else if (gameState[2] !== '' && gameState[2] === gameState[4] && gameState[4] === gameState[6]) {
     $('#message').text(`Player ${gameState[2]} WINS`)
     console.log(`Player ${gameState[2]} WINS`)
+    gameOver = true
+    console.log('gameOver = true')
   } else {
     console.log('no winner yet, keep playing')
   }
 }
-
 
 let turn = 'x'
 // storing current gameState array
@@ -84,8 +101,14 @@ const onMove = function (event) {
   console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
   const boxContent = $(event.target).text()
   // console.log('boxContent = ' + boxContent)
+  // if the game is over
+  if (gameOver === true) {
+    console.log('Game over, press "New Game" button to start a new game!')
+    $('#message').text(`Game over. Press "New Game" to start a new game.`)
+    return
+  }
   // If the space is already taken
-  if (boxContent === 'x' || boxContent === 'o') {
+  else if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
     console.log('Error, space already taken, try again')
