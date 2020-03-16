@@ -28,7 +28,6 @@ const signInSuccess = function (data) {
 // store.game = data.game
 // looks like youri also just stored his in the events.js file yes, onNewGame is the name of my funciton/VARIABLE
 
-
 const signInFailure = function (error) {
   $('#message').text('Error when signing in')
   $('#message').removeClass()
