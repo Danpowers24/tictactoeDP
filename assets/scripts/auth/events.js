@@ -86,6 +86,7 @@ const checkWin = function () {
     console.log(`Player ${gameState[2]} WINS`)
     gameOver = true
     console.log('gameOver = true')
+    // else if every tile !== '' and none of the win states are true, then it is a tie
   } else {
     console.log('no winner yet, keep playing')
   }
@@ -106,9 +107,8 @@ const onMove = function (event) {
     console.log('Game over, press "New Game" button to start a new game!')
     $('#message').text(`Game over. Press "New Game" to start a new game.`)
     return
-  }
   // If the space is already taken
-  else if (boxContent === 'x' || boxContent === 'o') {
+} else if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
     console.log('Error, space already taken, try again')
@@ -125,16 +125,12 @@ const onMove = function (event) {
       gameState[playerTileChoice] = turn
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
-
+      // check if this move created a winner
       checkWin()
-
-      // if the value at every index of the array is either x or o,
       // update the API with 'x'
       // pass in playerTileChoice (index) to update API
-      // isOver = true or false depending on if there is a winner or draw
       turn = 'o'
       console.log('currentTurn = ' + currentTurn)
-
       return currentTurn
     }
   } if (turn === 'o') {
@@ -143,7 +139,9 @@ const onMove = function (event) {
     gameState[playerTileChoice] = turn
     // console.log the array to check what it is doing
     console.log('This is the gameState array: ' + gameState)
+    // check if this move created a winner
     checkWin()
+    // change turns
     turn = 'x'
     console.log('currentTurn = ' + currentTurn)
     return currentTurn
