@@ -112,6 +112,7 @@ const onMove = function (event) {
     // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
     console.log('Error, space already taken, try again')
+    return
   // if there is a free space
 } else {
     // make the box the value of the turn
