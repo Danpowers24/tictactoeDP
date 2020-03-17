@@ -43,7 +43,7 @@ const onSignOut = function (event) {
 
 let gameOver = false
 
-const gameState = ['', '', '', '', '', '', '', '', '']
+let gameState = ['', '', '', '', '', '', '', '', '']
 // check for wins, each winstate of 3-in-a-row translates to 8 different combinations of a certain 3 indices
 const checkWin = function () {
   if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
