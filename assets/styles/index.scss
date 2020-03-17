@@ -1,13 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 
-
 .game-board-container {
   display: flex;
   flex-wrap: wrap;
-  height: 400px;
+  height: 300px;
   width: 200px;
 }
 
+.hidden {
+  display: none;
+}
 
 .box:hover {
   background-color: #C1E0FD;

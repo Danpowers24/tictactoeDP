@@ -2,6 +2,11 @@
 
 const store = require(('../store.js'))
 
+$(function () {
+  $('#sign-out').addClass('hidden')
+  $('#change-password').addClass('hidden')
+})
+
 const signUpSuccess = function (data) {
   $('#message').text('Signed up successfully')
   $('#message').removeClass()
@@ -22,6 +27,10 @@ const signInSuccess = function (data) {
   $('#message').addClass('success')
   console.log('signInSuccess data is: ' , data),
   store.user = data.user
+  $('#sign-up').addClass('hidden')
+  $('#sign-in').addClass('hidden')
+  $('#sign-out').removeClass('hidden')
+  $('#change-password').removeClass('hidden')
 }
 
 // make a new const 'new game succeess' and new game failure
@@ -54,6 +63,10 @@ const signOutSuccess = function (data) {
   $('#message').removeClass()
   $('#message').addClass('success')
   console.log('signOutSuccess data is: ', data)
+  $('#sign-up').removeClass('hidden')
+  $('#sign-in').removeClass('hidden')
+  $('#sign-out').addClass('hidden')
+  $('#change-password').addClass('hidden')
 }
 
 const signOutFailure = function (data) {
