@@ -152,8 +152,15 @@ const onMove = function (event) {
   }
 }
 
-
-
+const onNewGame = function (event) {
+  event.preventDefault()
+  console.log('New game button clicked')
+  $('.box').text('')
+  // write code to clear the gameState array when the function is called (newGame button clicked)
+      // const gameState = ['', '', '', '', '', '','', '', '']
+      // console.log('new gameState array is ' + gameState)
+  // wipe the game board
+}
 
 // pass in playerTileChoice (index) to update API at end of second tie code
 // update the API with 'o'
@@ -171,17 +178,6 @@ const onMove = function (event) {
 //   }
 // }
 // isOver = true or false depending on if there is a winner or draw
-
-// do the above after I code the wins states
-
-const onNewGame = function (event) {
-  event.preventDefault()
-  console.log('New game button clicked')
-  // write code to clear the gameState array when the function is called (newGame button clicked)
-      // const gameState = ['', '', '', '', '', '','', '', '']
-      // console.log('new gameState array is ' + gameState)
-  // wipe the game board
-}
 
 //stuff
 // it's going to be a button so I have to preventDefault
