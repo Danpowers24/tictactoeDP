@@ -156,6 +156,7 @@ const onNewGame = function (event) {
   event.preventDefault()
   console.log('New game button clicked')
   $('.box').text('')
+  gameState = ['', '', '', '', '', '','', '', '']
   // write code to clear the gameState array when the function is called (newGame button clicked)
       // const gameState = ['', '', '', '', '', '','', '', '']
       // console.log('new gameState array is ' + gameState)
