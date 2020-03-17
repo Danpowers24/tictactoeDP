@@ -44,7 +44,7 @@ const onSignOut = function (event) {
 let gameOver = false
 
 const gameState = ['', '', '', '', '', '', '', '', '']
-// check for wins, don't worry about ties yet
+// check for wins, each winstate of 3-in-a-row translates to 8 different combinations of a certain 3 indices
 const checkWin = function () {
   if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
     $('#message').text('Player ' + gameState[0] + ' WINS')
@@ -87,6 +87,10 @@ const checkWin = function () {
     gameOver = true
     console.log('gameOver = true')
     // else if every tile !== '' and none of the win states are true, then it is a tie
+  } else if (gameState[0] !== '' && gameState[1] !== '' && gameState[2] !== '' && gameState[3] !== '' && gameState[4] !== '' && gameState[5] !== '' && gameState[6] !== '' && gameState[7] !== '' && gameState[8] !== '') {
+    console.log('The game ends in a tie!')
+    $('#message').text('Game ends in a tie')
+    gameOver = true
   } else {
     console.log('no winner yet, keep playing')
   }
