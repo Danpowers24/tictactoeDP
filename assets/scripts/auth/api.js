@@ -46,27 +46,27 @@ const changePassword = function (data) {
   })
 }
 
-const newGame = function () {
-  console.log('In api.js')
-  return $.ajax({
-    // not sure what to update the url to
-    url: config.apiUrl + '/new-game',
-    method: 'POST',
-    data: {
-      // I copied and pasted what was in the documentation
-      "game": {
-        "id": 3,
-        "cells": ["","","","","","","","",""],
-        "over": false,
-        "player_x": {
-          "id": 1,
-          "email": // store.email
-        },
-        "player_o": null
-      }
-    }
-  })
-}
+// const newGame = function () {
+//   console.log('In api.js')
+//   return $.ajax({
+//     // not sure what to update the url to
+//     url: config.apiUrl + '/new-game',
+//     method: 'POST',
+//     data: {
+//       // I copied and pasted what was in the documentation
+//       "game": {
+//         "id": 3,
+//         "cells": ["","","","","","","","",""],
+//         "over": false,
+//         "player_x": {
+//           "id": 1,
+//           "email": // store.email
+//         },
+//         "player_o": null
+//       }
+//     }
+//   })
+// }
 
 // make a updatemove api request and use data from the do
 
