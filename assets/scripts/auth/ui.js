@@ -13,14 +13,14 @@ const signUpSuccess = function (data) {
   $('#message').text('Signed up successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signUpSuccess data is: ' , data)
+  // console.log('signUpSuccess data is: ' , data)
 }
 
-const signUpFailure = function (error) {
+const signUpFailure = function () {
   $('#message').text('Something went wrong when signing up, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signUpFailure error is: ' , error)
+  // console.log('signUpFailure error is: ' , error)
   $('sign-up').reset()
 }
 
@@ -28,7 +28,7 @@ const signInSuccess = function (data) {
   $('#message').text('Signed in successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signInSuccess data is: ' , data),
+  // console.log('signInSuccess data is: ', data)
   store.user = data.user
   $('#sign-up').addClass('hidden')
   $('#sign-in').addClass('hidden')
@@ -41,32 +41,32 @@ const signInSuccess = function (data) {
 // store.game = data.game
 // looks like youri also just stored his in the events.js file yes, onNewGame is the name of my funciton/VARIABLE
 
-const signInFailure = function (error) {
+const signInFailure = function () {
   $('#message').text('Invalid credentials, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signInFailure error is: ' , error)
+  // console.log('signInFailure error is: ' , error)
 }
 
 const changePasswordSuccess = function (data) {
   $('#message').text('Changed password successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('changePasswordSuccess data is: ' , data)
+  // console.log('changePasswordSuccess data is: ' , data)
 }
 
-const changePasswordFailure = function (error) {
+const changePasswordFailure = function () {
   $('#message').text('Failed to change password, try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('changePasswordFailure error is: ', error)
+  // console.log('changePasswordFailure error is: ', error)
 }
 
 const signOutSuccess = function (data) {
   $('#message').text('You have successfully signed out. Thanks for playing!')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signOutSuccess data is: ', data)
+  // console.log('signOutSuccess data is: ', data)
   $('#sign-up').removeClass('hidden')
   $('#sign-in').removeClass('hidden')
   $('#sign-out').addClass('hidden')
@@ -79,9 +79,8 @@ const signOutFailure = function (data) {
   $('#message').text('You are not signed out yet! Something went wrong.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signOutFailure data is: ', data)
+  // console.log('signOutFailure data is: ', data)
 }
-
 
 module.exports = {
   signUpSuccess,

@@ -112,15 +112,15 @@ const onMove = function (event) {
     $('#message').text(`Game over. Press "New Game" to start a new game.`)
     return
   // If the space is already taken
-} else if (boxContent === 'x' || boxContent === 'o') {
+  } else if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
     console.log('Error, space already taken, try again')
     return
   // if there is a free space
-} else {
+  } else {
     // make the box the value of the turn
-    const boxContent = $(event.target).text(turn)
+    // const boxContent = $(event.target).text(turn)
     // flip the value of turn after each turn
     if (turn === 'x') {
       // take this value export this as a variable (currentTurn) and then return it
@@ -156,14 +156,14 @@ const onNewGame = function (event) {
   event.preventDefault()
   console.log('New game button clicked')
   $('.box').text('')
-  gameState = ['', '', '', '', '', '','', '', '']
+  gameState = ['', '', '', '', '', '', '', '', '']
   gameOver = false
   turn = 'x'
   $('.game-board-container').removeClass('hidden')
   $('#message').text('')
   // write code to clear the gameState array when the function is called (newGame button clicked)
-      // const gameState = ['', '', '', '', '', '','', '', '']
-      // console.log('new gameState array is ' + gameState)
+  // const gameState = ['', '', '', '', '', '','', '', '']
+  // console.log('new gameState array is ' + gameState)
   // wipe the game board
 }
 
@@ -184,24 +184,21 @@ const onNewGame = function (event) {
 // }
 // isOver = true or false depending on if there is a winner or draw
 
-//stuff
+// stuff
 // it's going to be a button so I have to preventDefault
 // make send the api request to start the game
 // turn
 
-const onStartGame =
+// const onStartGame =
 //  preventDefault
 // this will launch on sing in success
-  // if (signInSuccess = true)
-  //
+// if (signInSuccess = true)
+//
 
 // modify the DOM by adding an empty string to each game board space
 // make a function to add test text to it
 // if contents of the game board space are empty, then populate it with the test stuff
 // else display a message "sorry! that space is already taken"
-
-
-
 
 module.exports = {
   onSignUp,
