@@ -5,6 +5,8 @@ const store = require(('../store.js'))
 $(function () {
   $('#sign-out').addClass('hidden')
   $('#change-password').addClass('hidden')
+  $('.game-board-container').addClass('hidden')
+  $('#new-game').addClass('hidden')
 })
 
 const signUpSuccess = function (data) {
@@ -19,6 +21,7 @@ const signUpFailure = function (error) {
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signUpFailure error is: ' , error)
+  $('sign-up').reset()
 }
 
 const signInSuccess = function (data) {
@@ -31,6 +34,7 @@ const signInSuccess = function (data) {
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#change-password').removeClass('hidden')
+  $('#new-game').removeClass('hidden')
 }
 
 // make a new const 'new game succeess' and new game failure
@@ -67,6 +71,8 @@ const signOutSuccess = function (data) {
   $('#sign-in').removeClass('hidden')
   $('#sign-out').addClass('hidden')
   $('#change-password').addClass('hidden')
+  $('.game-board-container').addClass('hidden')
+  $('#new-game').addClass('hidden')
 }
 
 const signOutFailure = function (data) {

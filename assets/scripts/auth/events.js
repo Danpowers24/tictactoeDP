@@ -159,6 +159,8 @@ const onNewGame = function (event) {
   gameState = ['', '', '', '', '', '','', '', '']
   gameOver = false
   turn = 'x'
+  $('.game-board-container').removeClass('hidden')
+  $('#message').text('')
   // write code to clear the gameState array when the function is called (newGame button clicked)
       // const gameState = ['', '', '', '', '', '','', '', '']
       // console.log('new gameState array is ' + gameState)
