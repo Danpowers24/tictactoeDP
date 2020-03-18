@@ -17,7 +17,7 @@ const signUpSuccess = function (data) {
 }
 
 const signUpFailure = function (error) {
-  $('#message').text('Error on sign up')
+  $('#message').text('Something went wrong when signing up, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signUpFailure error is: ' , error)
@@ -42,7 +42,7 @@ const signInSuccess = function (data) {
 // looks like youri also just stored his in the events.js file yes, onNewGame is the name of my funciton/VARIABLE
 
 const signInFailure = function (error) {
-  $('#message').text('Error when signing in')
+  $('#message').text('Invalid credentials, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signInFailure error is: ' , error)
@@ -56,14 +56,14 @@ const changePasswordSuccess = function (data) {
 }
 
 const changePasswordFailure = function (error) {
-  $('#message').text('Failed to change password, try again')
+  $('#message').text('Failed to change password, try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('changePasswordFailure error is: ', error)
 }
 
 const signOutSuccess = function (data) {
-  $('#message').text('You have successfully signed out')
+  $('#message').text('You have successfully signed out. Thanks for playing!')
   $('#message').removeClass()
   $('#message').addClass('success')
   console.log('signOutSuccess data is: ', data)
