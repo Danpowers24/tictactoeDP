@@ -97,7 +97,6 @@ const checkWin = function () {
 }
 
 let turn = 'x'
-// storing current gameState array
 
 const onMove = function (event) {
   $('#message').text('')
@@ -105,7 +104,7 @@ const onMove = function (event) {
   const playerTileChoice = event.target.id
   console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
   const boxContent = $(event.target).text()
-  // console.log('boxContent = ' + boxContent)
+  console.log('boxContent = ' + boxContent)
   // if the game is over
   if (gameOver === true) {
     console.log('Game over, press "New Game" button to start a new game!')
