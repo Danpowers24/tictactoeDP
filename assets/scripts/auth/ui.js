@@ -7,34 +7,42 @@ $(function () {
   $('#change-password').addClass('hidden')
   $('.game-board-container').addClass('hidden')
   $('#new-game').addClass('hidden')
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 })
 
 const signUpSuccess = function (data) {
   $('#message').text('Signed up successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signUpSuccess data is: ' , data)
+  console.log('signUpSuccess data is: ', data)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const signUpFailure = function (error) {
   $('#message').text('Something went wrong when signing up, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signUpFailure error is: ' , error)
+  console.log('signUpFailure error is: ', error)
   $('sign-up').reset()
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const signInSuccess = function (data) {
   $('#message').text('Signed in successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('signInSuccess data is: ' , data),
+  console.log('signInSuccess data is: ', data)
   store.user = data.user
   $('#sign-up').addClass('hidden')
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#change-password').removeClass('hidden')
   $('#new-game').removeClass('hidden')
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 // make a new const 'new game succeess' and new game failure
@@ -45,14 +53,18 @@ const signInFailure = function (error) {
   $('#message').text('Invalid credentials, please try again.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signInFailure error is: ' , error)
+  console.log('signInFailure error is: ', error)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const changePasswordSuccess = function (data) {
   $('#message').text('Changed password successfully')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('changePasswordSuccess data is: ' , data)
+  console.log('changePasswordSuccess data is: ', data)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const changePasswordFailure = function (error) {
@@ -60,6 +72,8 @@ const changePasswordFailure = function (error) {
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('changePasswordFailure error is: ', error)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const signOutSuccess = function (data) {
@@ -73,6 +87,8 @@ const signOutSuccess = function (data) {
   $('#change-password').addClass('hidden')
   $('.game-board-container').addClass('hidden')
   $('#new-game').addClass('hidden')
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
 
 const signOutFailure = function (data) {
@@ -80,8 +96,9 @@ const signOutFailure = function (data) {
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signOutFailure data is: ', data)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
 }
-
 
 module.exports = {
   signUpSuccess,
