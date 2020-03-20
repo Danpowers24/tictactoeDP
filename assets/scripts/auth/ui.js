@@ -25,7 +25,6 @@ const signUpFailure = function (error) {
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.log('signUpFailure error is: ', error)
-  $('sign-up').reset()
   $('form input[type="text"]').val('')
   $('form input[type="password"]').val('')
 }
