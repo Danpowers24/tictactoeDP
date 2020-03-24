@@ -153,17 +153,23 @@ const onMove = function (event) {
 }
 
 const onNewGame = function (event) {
+  // prevent the page from reloading after button gets clicked
   event.preventDefault()
   console.log('New game button clicked')
+  // clear the game board
   $('.box').text('')
+  // clear the gameState array when the function is called (newGame button clicked)
   gameState = ['', '', '', '', '', '','', '', '']
+  // set the gameOver variable to false, indicating the game is not over
   gameOver = false
+  // make sure 'Player X' always starts the game
   turn = 'x'
+  // make sure the game board appears
   $('.game-board-container').removeClass('hidden')
+  // clear the message
   $('#message').text('')
-  // write code to clear the gameState array when the function is called (newGame button clicked)
-      // const gameState = ['', '', '', '', '', '','', '', '']
-      // console.log('new gameState array is ' + gameState)
+
+  // console.log('new gameState array is ' + gameState)
   // wipe the game board
 }
 
