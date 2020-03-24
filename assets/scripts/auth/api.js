@@ -61,12 +61,13 @@ const newGame = function () {
         "player_x": {
           "id": 1,
           "email": store.email,
-        "player_o": null
+          "player_o": null
+        }
       }
     }
-  })
 }
-
+)
+}
 // make a updatemove api request and use data from the do
 
 // for this, I think I need to return the index of each move and the value (x or o) and import it here somehow
@@ -75,7 +76,7 @@ const updateGame = function (data) {
   console.log('ran updateMoveSuccess in api.js')
   return $.ajax({
     // I need to update the url with the correct url
-    url: config.apiUrl + '/',
+    url: config.apiUrl + '/update-game',
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -96,5 +97,7 @@ module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  updateGame,
+  newGame
 }

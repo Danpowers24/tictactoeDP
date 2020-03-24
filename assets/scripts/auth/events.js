@@ -103,7 +103,7 @@ const onMove = function (event) {
   $('#message').text('')
   console.log('...a move was made...')
   const playerTileChoice = event.target.id
-  console.log('playerTileChoice/what the index of the array to be filled will be = ' + playerTileChoice)
+  console.log('playerTileChoice = ' + playerTileChoice)
   const boxContent = $(event.target).text()
   // console.log('boxContent = ' + boxContent)
   // if the game is over
