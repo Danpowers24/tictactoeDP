@@ -103,6 +103,14 @@ const udpateGame = function (data) {
   console.log('updateGame function has run')
 }
 
+const newGameSuccess = function (data) {
+  console.log('newGameSuccess was called and ran')
+}
+
+const newGameFailure = function (data) {
+  console.log('newGameFailure was called and ran')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -111,5 +119,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  newGameSuccess,
+  newGameFailure
 }

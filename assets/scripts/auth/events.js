@@ -6,6 +6,8 @@ const api = require('./api.js')
 
 const ui = require('./ui.js')
 
+const store = require('../store.js')
+
 const onSignUp = function (event) {
   event.preventDefault()
   console.log('Signing up')
@@ -171,9 +173,12 @@ const onNewGame = function (event) {
   $('.game-board-container').removeClass('hidden')
   // clear the message
   $('#message').text('')
-
-  // console.log('new gameState array is ' + gameState)
-  // wipe the game board
+  // call the newGame function in api.js
+  // pass this function token?
+  const data = store.user.token
+  api.newGame(data)
+    .then(ui.newGameSuccess)
+    .catch(ui.newGameFailure)
 }
 
 // pass in playerTileChoice (index) to update API at end of second tie code

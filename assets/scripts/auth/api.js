@@ -2,6 +2,7 @@
 
 const config = require('../config.js')
 const store = require('../store.js')
+// wait why do I require events here?
 const events = require('./events.js')
 
 const signUp = function (data) {
@@ -51,25 +52,25 @@ const newGame = function () {
   console.log('In api.js')
   return $.ajax({
     // not sure what to update the url to
-    url: config.apiUrl + '/new-game',
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'POST',
     data: {
       // I copied and pasted what was in the documentation
       // I don't think I need all of this, just a POST request and then store what it gives me back
       // it will give me an game id and maybe something else that I can store in store.js
-      "game": {
-        "id": 3,
-        "cells": ["","","","","","","","",""],
-        "over": false,
-        "player_x": {
-          "id": 1,
-          "email": store.email,
-          "player_o": null
-        }
-      }
+      // "game": {
+      //   "id": 3,
+      //   "cells": ["","","","","","","","",""],
+      //   "over": false,
+      //   "player_x": {
+      //     "id": 1,
+      //     "email": store.email,
+      //     "player_o": null
+      //   }
+      // }
     }
-}
-)
+  }
+  )
 }
 // make a updatemove api request and use data from the do
 
