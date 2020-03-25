@@ -99,6 +99,10 @@ const signOutFailure = function (data) {
   $('form input[type="password"]').val('')
 }
 
+const udpateGame = function (data) {
+  console.log('updateGame function has run')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,

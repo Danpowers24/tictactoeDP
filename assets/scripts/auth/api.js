@@ -2,6 +2,7 @@
 
 const config = require('../config.js')
 const store = require('../store.js')
+const events = require('./events.js')
 
 const signUp = function (data) {
   console.log('In api.js')
@@ -54,6 +55,8 @@ const newGame = function () {
     method: 'POST',
     data: {
       // I copied and pasted what was in the documentation
+      // I don't think I need all of this, just a POST request and then store what it gives me back
+      // it will give me an game id and maybe something else that I can store in store.js
       "game": {
         "id": 3,
         "cells": ["","","","","","","","",""],
@@ -82,10 +85,10 @@ const updateGame = function (data) {
       Authorization: 'Token token=' + store.user.token
     },
     data: {
-      "game": {
+      "game": /* get the game id from store.js */ {
         "cell": {
-          "index": 0,
-          "value": "x"
+          "index": 0, /* get the playerTileChoice from events.js */
+          "value": "x" /* get currentTurn from events.js */
         },
         "over": false
       }

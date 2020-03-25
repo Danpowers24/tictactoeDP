@@ -97,11 +97,12 @@ const checkWin = function () {
 }
 
 let turn = 'x'
-// storing current gameState array
+const playerTileChoice = null
 
 const onMove = function (event) {
   $('#message').text('')
   console.log('...a move was made...')
+  // store the player's selected tile ID in playerTileChoice
   const playerTileChoice = event.target.id
   console.log('playerTileChoice = ' + playerTileChoice)
   const boxContent = $(event.target).text()
@@ -133,9 +134,11 @@ const onMove = function (event) {
       checkWin()
       // update the API with 'x'
       // pass in playerTileChoice (index) to update API
+      // switch the turn to o's turn
       turn = 'o'
       console.log('currentTurn = ' + currentTurn)
-      return currentTurn
+      // I want to see if I can return playerTileChoice instead of currentTurn
+      return playerTileChoice
     }
   } if (turn === 'o') {
     const currentTurn = turn
@@ -148,7 +151,7 @@ const onMove = function (event) {
     // change turns
     turn = 'x'
     console.log('currentTurn = ' + currentTurn)
-    return currentTurn
+    return playerTileChoice
   }
 }
 
@@ -159,7 +162,7 @@ const onNewGame = function (event) {
   // clear the game board
   $('.box').text('')
   // clear the gameState array when the function is called (newGame button clicked)
-  gameState = ['', '', '', '', '', '','', '', '']
+  gameState = ['', '', '', '', '', '', '', '', '']
   // set the gameOver variable to false, indicating the game is not over
   gameOver = false
   // make sure 'Player X' always starts the game
@@ -195,19 +198,10 @@ const onNewGame = function (event) {
 // make send the api request to start the game
 // turn
 
-const onStartGame =
-//  preventDefault
-// this will launch on sing in success
-  // if (signInSuccess = true)
-  //
-
 // modify the DOM by adding an empty string to each game board space
 // make a function to add test text to it
 // if contents of the game board space are empty, then populate it with the test stuff
 // else display a message "sorry! that space is already taken"
-
-
-
 
 module.exports = {
   onSignUp,
@@ -216,5 +210,6 @@ module.exports = {
   onSignOut,
   onMove,
   onNewGame,
-  gameState
+  gameState,
+  playerTileChoice
 }
