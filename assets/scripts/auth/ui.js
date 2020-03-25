@@ -99,8 +99,12 @@ const signOutFailure = function (data) {
   $('form input[type="password"]').val('')
 }
 
-const udpateGame = function (data) {
-  console.log('updateGame function has run')
+const udpateGameSuccess = function (data) {
+  console.log('in ui.js: updateGame function has run, success!')
+}
+
+const udpateGameFailure = function (data) {
+  console.log('in ui.js: updateGame function has failed')
 }
 
 const newGameSuccess = function (data) {
@@ -122,4 +126,6 @@ module.exports = {
   signOutFailure,
   newGameSuccess,
   newGameFailure
+  // updateGameSuccess,
+  // updateGameFailure
 }

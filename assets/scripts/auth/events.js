@@ -43,7 +43,31 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const gameObject = {
+  "game": {
+    "cell": {
+      "index": playerTileChoice,
+      "value": turn
+    },
+    "over": gameOver
+  }
+}
+
+const onUpdateGame = function (gameObject) {
+  event.preventDefault()
+  console.log('onUpdateGame called')
+  api.updateGame()
+    .then(ui.updateGameSuccess)
+    .catch(ui.updateGameFailure)
+}
+
+// assigning default value to represent game is not over
 let gameOver = false
+
+const gameIsAlreadyOverMessage = function () {
+  console.log('Game over, press "New Game" button to start a new game!')
+  $('#message').text(`Game over. Press "New Game" to start a new game.`)
+}
 
 let gameState = ['', '', '', '', '', '', '', '', '']
 // check for wins, each winstate of 3-in-a-row translates to 8 different combinations of a certain 3 indices
@@ -111,17 +135,16 @@ const onMove = function (event) {
   // console.log('boxContent = ' + boxContent)
   // if the game is over
   if (gameOver === true) {
-    console.log('Game over, press "New Game" button to start a new game!')
-    $('#message').text(`Game over. Press "New Game" to start a new game.`)
+    gameIsAlreadyOverMessage()
     return
   // If the space is already taken
-} else if (boxContent === 'x' || boxContent === 'o') {
+  } else if (boxContent === 'x' || boxContent === 'o') {
     // give the user a warning that the space is already taken
     $('#message').text('Error, space already taken, try again')
     console.log('Error, space already taken, try again')
     return
   // if there is a free space
-} else {
+  } else {
     // make the box the value of the turn
     const boxContent = $(event.target).text(turn)
     // flip the value of turn after each turn
@@ -134,26 +157,31 @@ const onMove = function (event) {
       console.log('This is the gameState array: ' + gameState)
       // check if this move created a winner
       checkWin()
-      // update the API with 'x'
-      // pass in playerTileChoice (index) to update API
       // switch the turn to o's turn
       turn = 'o'
       console.log('currentTurn = ' + currentTurn)
       // I want to see if I can return playerTileChoice instead of currentTurn
+      // return playerTileChoice
+      onUpdateGame()
+      // test to see if the previous function was called
+      console.log('onUpdateGame was called from inside onMove function')
+    } else if (turn === 'o') {
+      const currentTurn = turn
+      // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
+      gameState[playerTileChoice] = turn
+      // console.log the array to check what it is doing
+      console.log('This is the gameState array: ' + gameState)
+      // check if this move created a winner
+      checkWin()
+      // change turns
+      turn = 'x'
+      console.log('currentTurn = ' + currentTurn)
+      // update the game with the current move
+      onUpdateGame()
+      // test to see if the previous function was called
+      console.log('onUpdateGame was called from inside onMove function')
       return playerTileChoice
     }
-  } if (turn === 'o') {
-    const currentTurn = turn
-    // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
-    gameState[playerTileChoice] = turn
-    // console.log the array to check what it is doing
-    console.log('This is the gameState array: ' + gameState)
-    // check if this move created a winner
-    checkWin()
-    // change turns
-    turn = 'x'
-    console.log('currentTurn = ' + currentTurn)
-    return playerTileChoice
   }
 }
 
@@ -181,32 +209,6 @@ const onNewGame = function (event) {
     .catch(ui.newGameFailure)
 }
 
-// pass in playerTileChoice (index) to update API at end of second tie code
-// update the API with 'o'
-// isOver = true or false depending on if there is a winner or draw
-
-// make a variable that holds my 'sendGameData' then I can send that to the api
-// must be in the format dictated by the API's rules (in documentation and below)
-//         {
-//   "game": {
-//     "cell": {
-//       "index": 0,
-//       "value": "x"
-//     },
-//     "over": false
-//   }
-// }
-// isOver = true or false depending on if there is a winner or draw
-
-//stuff
-// it's going to be a button so I have to preventDefault
-// make send the api request to start the game
-// turn
-
-// modify the DOM by adding an empty string to each game board space
-// make a function to add test text to it
-// if contents of the game board space are empty, then populate it with the test stuff
-// else display a message "sorry! that space is already taken"
 
 module.exports = {
   onSignUp,
@@ -216,5 +218,6 @@ module.exports = {
   onMove,
   onNewGame,
   gameState,
-  playerTileChoice
+  playerTileChoice,
+  onUpdateGame
 }

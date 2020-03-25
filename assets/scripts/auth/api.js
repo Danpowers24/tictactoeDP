@@ -48,9 +48,8 @@ const changePassword = function (data) {
 }
 
 const newGame = function () {
-  console.log('In api.js')
+  console.log('In api.js: newGame function has been called and ran')
   return $.ajax({
-    // not sure what to update the url to
     url: config.apiUrl + '/games/',
     method: 'POST',
     headers: {
@@ -59,13 +58,16 @@ const newGame = function () {
   })
 }
 
-// for this, I think I need to return the index of each move and the value (x or o) and import it here somehow
 // I should export a lot of this stuff to store.js and then import it here
 const updateGame = function (data) {
+  // test to see if this function gets called
   console.log('ran updateMoveSuccess in api.js')
+  // test to see what gets stored
+  console.log(store.game)
+  // AJAX call
   return $.ajax({
     // I need to update the url with the correct url
-    url: config.apiUrl + '/update-game',
+    url: config.apiUrl + '/games/' /* + game id */ ,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
