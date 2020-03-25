@@ -12,7 +12,6 @@ const signUp = function (data) {
     method: 'POST',
     data
     // data: data
-
   })
 }
 
@@ -52,27 +51,13 @@ const newGame = function () {
   console.log('In api.js')
   return $.ajax({
     // not sure what to update the url to
-    url: config.apiUrl + '/games/' + store.game.id,
+    url: config.apiUrl + '/games/',
     method: 'POST',
-    data: {
-      // I copied and pasted what was in the documentation
-      // I don't think I need all of this, just a POST request and then store what it gives me back
-      // it will give me an game id and maybe something else that I can store in store.js
-      // "game": {
-      //   "id": 3,
-      //   "cells": ["","","","","","","","",""],
-      //   "over": false,
-      //   "player_x": {
-      //     "id": 1,
-      //     "email": store.email,
-      //     "player_o": null
-      //   }
-      // }
+    headers: {
+      Authorization: 'Token token=' + store.user.token
     }
-  }
-  )
+  })
 }
-// make a updatemove api request and use data from the do
 
 // for this, I think I need to return the index of each move and the value (x or o) and import it here somehow
 // I should export a lot of this stuff to store.js and then import it here
