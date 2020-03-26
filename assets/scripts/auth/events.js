@@ -43,6 +43,14 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onShowGames = function (event) {
+  event.preventDefault()
+  console.log('Show games button has been clicked')
+  // api.signOut()
+    .then(ui.showGamesSuccess)
+    .catch(ui.showGamesFailure)
+}
+
 let gameOver
 
 const gameObject = {
@@ -245,5 +253,6 @@ module.exports = {
   onNewGame,
   gameState,
   playerTileChoice,
-  onUpdateGame
+  onUpdateGame,
+  onShowGames
 }

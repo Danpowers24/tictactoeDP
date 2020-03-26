@@ -9,6 +9,7 @@ $(function () {
   $('#new-game').addClass('hidden')
   $('form input[type="text"]').val('')
   $('form input[type="password"]').val('')
+  $('#show-games').addClass('hidden')
 })
 
 const signUpSuccess = function (data) {
@@ -43,6 +44,7 @@ const signInSuccess = function (data) {
   $('#new-game').removeClass('hidden')
   $('form input[type="text"]').val('')
   $('form input[type="password"]').val('')
+  $('#show-games').removeClass('hidden')
 }
 
 // make a new const 'new game succeess' and new game failure
@@ -117,6 +119,28 @@ const newGameFailure = function (error) {
   console.log('newGameFailure was called and ran')
 }
 
+const showGamesSuccess = function (data) {
+  $('#message').text('You have played X amount of games')
+  // $('#message').removeClass()
+  $('#message').addClass('success')
+  console.log('showGamesSuccess data is: ??', data)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
+}
+
+const showGamesFailure = function (error) {
+  $('#message').text('Something went wrong when trying to see how many games you have played')
+  $('#message').removeClass()
+  $('#message').addClass('failure')
+  console.log('showGamesFailure data is: ', error)
+  $('form input[type="text"]').val('')
+  $('form input[type="password"]').val('')
+}
+
+// remember what I am getting - an array
+// .length
+// when I am making the api call, always double check the documentation
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -127,7 +151,9 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   newGameSuccess,
-  newGameFailure
+  newGameFailure,
+  showGamesFailure,
+  showGamesSuccess
   // updateGameSuccess,
   // updateGameFailure
 }
