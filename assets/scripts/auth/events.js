@@ -43,6 +43,8 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+let gameOver
+
 const gameObject = {
   "game": {
     "cell": {
@@ -61,9 +63,6 @@ const onUpdateGame = function (gameObject) {
     .catch(ui.updateGameFailure)
 }
 
-// assigning default value to represent game is not over
-let gameOver = false
-
 const gameIsAlreadyOverMessage = function () {
   console.log('Game over, press "New Game" button to start a new game!')
   $('#message').text(`Game over. Press "New Game" to start a new game.`)
@@ -72,51 +71,52 @@ const gameIsAlreadyOverMessage = function () {
 let gameState = ['', '', '', '', '', '', '', '', '']
 // check for wins, each winstate of 3-in-a-row translates to 8 different combinations of a certain 3 indices
 const checkWin = function () {
+  let gameOver = store.game.over
   if (gameState[0] !== '' && gameState[0] === gameState[1] && gameState[1] === gameState[2]) {
     $('#message').text('Player ' + gameState[0] + ' WINS')
     console.log(`Player ${gameState[0]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[3] !== '' && gameState[3] === gameState[4] && gameState[4] === gameState[5]) {
     $('#message').text(`Player ${gameState[3]} WINS`)
     console.log(`Player ${gameState[3]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[6] !== '' && gameState[6] === gameState[7] && gameState[7] === gameState[8]) {
     $('#message').text(`Player ${gameState[6]} WINS`)
     console.log(`Player ${gameState[6]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[0] !== '' && gameState[0] === gameState[3] && gameState[3] === gameState[6]) {
     $('#message').text(`Player ${gameState[0]} WINS`)
     console.log(`Player ${gameState[0]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[1] !== '' && gameState[1] === gameState[4] && gameState[4] === gameState[7]) {
     $('#message').text(`Player ${gameState[1]} WINS`)
     console.log(`Player ${gameState[1]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[2] !== '' && gameState[2] === gameState[5] && gameState[5] === gameState[8]) {
     $('#message').text(`Player ${gameState[2]} WINS`)
     console.log(`Player ${gameState[2]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[0] !== '' && gameState[0] === gameState[4] && gameState[4] === gameState[8]) {
     $('#message').text(`Player ${gameState[0]} WINS`)
     console.log(`Player ${gameState[0]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
   } else if (gameState[2] !== '' && gameState[2] === gameState[4] && gameState[4] === gameState[6]) {
     $('#message').text(`Player ${gameState[2]} WINS`)
     console.log(`Player ${gameState[2]} WINS`)
-    gameOver = true
+    store.game.over = true
     console.log('gameOver = true')
     // else if every tile !== '' and none of the win states are true, then it is a tie
   } else if (gameState[0] !== '' && gameState[1] !== '' && gameState[2] !== '' && gameState[3] !== '' && gameState[4] !== '' && gameState[5] !== '' && gameState[6] !== '' && gameState[7] !== '' && gameState[8] !== '') {
     console.log('The game ends in a tie!')
     $('#message').text('Game ends in a tie')
-    gameOver = true
+    store.game.over = true
   } else {
     console.log('no winner yet, keep playing')
   }
@@ -126,6 +126,7 @@ let turn = 'x'
 const playerTileChoice = null
 
 const onMove = function (event) {
+  // console.log(store)
   $('#message').text('')
   console.log('...a move was made...')
   // store the player's selected tile ID in playerTileChoice
@@ -134,7 +135,7 @@ const onMove = function (event) {
   const boxContent = $(event.target).text()
   // console.log('boxContent = ' + boxContent)
   // if the game is over
-  if (gameOver === true) {
+  if (store.game.over === true) {
     gameIsAlreadyOverMessage()
     return
   // If the space is already taken
@@ -152,9 +153,13 @@ const onMove = function (event) {
       // take this value export this as a variable (currentTurn) and then return it
       const currentTurn = turn
       // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
-      gameState[playerTileChoice] = turn
+      store.game.cells[playerTileChoice] = turn
+      // make gamestate array mirror store.game.cells
+      gameState = store.game.cells
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
+      // reassigning gameOver current winstate
+      gameOver = store.game.over
       // check if this move created a winner
       checkWin()
       // switch the turn to o's turn
@@ -162,24 +167,46 @@ const onMove = function (event) {
       console.log('currentTurn = ' + currentTurn)
       // I want to see if I can return playerTileChoice instead of currentTurn
       // return playerTileChoice
-      onUpdateGame()
+      api.updateGame({
+        'game': {
+          'cell': {
+            'index': playerTileChoice,
+            'value': currentTurn
+          },
+          'over': store.game.over
+        }
+      })
       // test to see if the previous function was called
       console.log('onUpdateGame was called from inside onMove function')
+      console.log(store.game.over)
     } else if (turn === 'o') {
       const currentTurn = turn
       // fill the empty array with an x or o at the index that corresponds to the playerTileChoice
-      gameState[playerTileChoice] = turn
+      store.game.cells[playerTileChoice] = turn
+      // make gamestate array mirror store.game.cells
+      gameState = store.game.cells
       // console.log the array to check what it is doing
       console.log('This is the gameState array: ' + gameState)
+      // reassigning gameOver current winstate
+      gameOver = store.game.over
       // check if this move created a winner
       checkWin()
       // change turns
       turn = 'x'
       console.log('currentTurn = ' + currentTurn)
       // update the game with the current move
-      onUpdateGame()
+      api.updateGame({
+        'game': {
+          'cell': {
+            'index': playerTileChoice,
+            'value': currentTurn
+          },
+          'over': store.game.over
+        }
+      })
       // test to see if the previous function was called
       console.log('onUpdateGame was called from inside onMove function')
+      console.log(store.game.over)
       return playerTileChoice
     }
   }
@@ -204,11 +231,10 @@ const onNewGame = function (event) {
   // call the newGame function in api.js
   // pass this function token?
   const data = store.user.token
-  api.newGame(data)
+  api.newGame()
     .then(ui.newGameSuccess)
     .catch(ui.newGameFailure)
 }
-
 
 module.exports = {
   onSignUp,

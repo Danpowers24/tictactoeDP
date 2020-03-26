@@ -63,24 +63,16 @@ const updateGame = function (data) {
   // test to see if this function gets called
   console.log('ran updateMoveSuccess in api.js')
   // test to see what gets stored
-  console.log(store.game)
+  console.log(store.game.cells)
   // AJAX call
   return $.ajax({
     // I need to update the url with the correct url
-    url: config.apiUrl + '/games/' /* + game id */ ,
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data: {
-      "game": /* get the game id from store.js */ {
-        "cell": {
-          "index": 0, /* get the playerTileChoice from events.js */
-          "value": "x" /* get currentTurn from events.js */
-        },
-        "over": false
-      }
-    }
+    data: data
   })
 }
 

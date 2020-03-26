@@ -35,6 +35,7 @@ const signInSuccess = function (data) {
   $('#message').addClass('success')
   console.log('signInSuccess data is: ', data)
   store.user = data.user
+  console.log(store.user)
   $('#sign-up').addClass('hidden')
   $('#sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
@@ -90,11 +91,11 @@ const signOutSuccess = function (data) {
   $('form input[type="password"]').val('')
 }
 
-const signOutFailure = function (data) {
+const signOutFailure = function (error) {
   $('#message').text('You are not signed out yet! Something went wrong.')
   $('#message').removeClass()
   $('#message').addClass('failure')
-  console.log('signOutFailure data is: ', data)
+  console.log('signOutFailure data is: ', error)
   $('form input[type="text"]').val('')
   $('form input[type="password"]').val('')
 }
@@ -103,15 +104,16 @@ const udpateGameSuccess = function (data) {
   console.log('in ui.js: updateGame function has run, success!')
 }
 
-const udpateGameFailure = function (data) {
+const udpateGameFailure = function (error) {
   console.log('in ui.js: updateGame function has failed')
 }
 
 const newGameSuccess = function (data) {
   console.log('newGameSuccess was called and ran')
+  store.game = data.game
 }
 
-const newGameFailure = function (data) {
+const newGameFailure = function (error) {
   console.log('newGameFailure was called and ran')
 }
 
