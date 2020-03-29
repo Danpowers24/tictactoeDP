@@ -13,7 +13,8 @@ jQuery\
 Git\
 GitHub\
 GitHub Enterprise\
-Heroku
+Heroku\
+Trello
 
 #### I wanted to make a game that will satisfy some of the following **user stories**:
 As a casual gamer, I want to play tic tac toe.\
